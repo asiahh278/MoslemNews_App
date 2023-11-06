@@ -31,15 +31,14 @@ class DetailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        @Suppress("DEPRECATION") val newsdata = when {
-            SDK_INT >= 33 -> intent.getParcelableExtra(NEWS_DATA, ArticlesItem::class.java)
-            else -> intent.getParcelableExtra(NEWS_DATA)
-        }
-
         @Suppress("DEPRECATION") val newsData = when {
             SDK_INT >= 33 -> intent.getParcelableExtra(NEWS_DATA, ArticlesItem::class.java)
                 else -> intent.getParcelableExtra(NEWS_DATA)
         }
+
+        val newsDate = intent.getStringExtra(EXTRA_DATA_DATE)
+        val newsTime = intent.getStringExtra(EXTRA_DATA_TIME)
+        val publishedAt = newsDate + newsTime
 
         binding.apply {
             tvDetailTitle.text = newsData?.title
@@ -50,7 +49,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setView(data: ArticlesItem?) {
+    private fun setWebView(data: ArticlesItem?) {
         var loadingFinished = true
         var redirect = false
 
@@ -71,7 +70,7 @@ class DetailActivity : AppCompatActivity() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
                 loadingFinished = false
-                // proggres bar visibility
+                // progress bar visibility
                 binding.loadingView.root.visibility = View.VISIBLE
             }
 
@@ -95,15 +94,10 @@ class DetailActivity : AppCompatActivity() {
         return super.onSupportNavigateUp()
     }
 
-    val newsData = intent.getStringExtra(EXTRA_DATA_DATE)
-    val newsTime = intent.getStringExtra(EXTRA_DATA_TIME)
-    val publishedAt = newsData + newsTime
-
-
 
     companion object {
         const val NEWS_DATA = "data"
-        const val EXTRA_DATA_DATE = "data"
-        const val EXTRA_DATA_TIME = "data"
+        const val EXTRA_DATA_DATE = "date"
+        const val EXTRA_DATA_TIME = "time"
     }
 }

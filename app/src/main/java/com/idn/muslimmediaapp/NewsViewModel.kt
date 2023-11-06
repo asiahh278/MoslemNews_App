@@ -10,6 +10,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+// menangani action when take the data
+// saving business logic and create terpisah between ui & logic
+// MutableLiveData = can be change, the key is var
+// LiveData = can't be change, the key is val
 class NewsViewModel: ViewModel() {
     private var _commonMuslimNews = MutableLiveData<NewsRespose>()
     val commonMuslimNews get() = _commonMuslimNews as LiveData<NewsRespose>
@@ -26,18 +30,19 @@ class NewsViewModel: ViewModel() {
     private var _searchNews = MutableLiveData<NewsRespose>()
     val searchNews get() = _searchNews as LiveData<NewsRespose>
 
-    fun commonMuslimNews(){
+    fun commonMuslimNews() {
         ApiClient.provideApiService().getCommonMuslimNews()
             .enqueue(object : Callback<NewsRespose> {
                 override fun onResponse(
                     call: Call<NewsRespose>,
                     response: Response<NewsRespose>
                 ) {
-                    if (response.isSuccessful){
+                    if (response.isSuccessful) {
                         Log.i(
                             "ViewModel",
                             "onResponse: Call success with HTTP status code ${response.body()}"
                         )
+                        _commonMuslimNews.postValue(response.body())
                     } else Log.e(
                         "ViewModel",
                         "onResponse: Call error with HTTP status code " + response.code()
@@ -45,7 +50,7 @@ class NewsViewModel: ViewModel() {
                     )
                 }
 
-                override fun onFailure(call: retrofit2.Call<NewsRespose>, t: Throwable) {
+                override fun onFailure(call: Call<NewsRespose>, t: Throwable) {
                     Log.e(
                         "ViewModel",
                         "onFailure" + t.localizedMessage
@@ -66,16 +71,17 @@ class NewsViewModel: ViewModel() {
                             "ViewModel",
                             "onResponse: Call success with HTTP status code ${response.body()}"
                         )
+                        _aboutAlQuranNews.postValue(response.body())
                     } else Log.e(
                         "ViewModel",
-                        "onResponse: Call error with HTTP status code " + response.code()
+                        "onResponse: Call error with HTTP status code ${response.code()}"
                     )
                 }
 
                 override fun onFailure(call: Call<NewsRespose>, t: Throwable) {
                     Log.e(
                         "ViewModel",
-                        "onFailure: " + t.localizedMessage
+                        "onFailure:  ${t.localizedMessage}"
                     )
                 }
             })
@@ -96,14 +102,14 @@ class NewsViewModel: ViewModel() {
                         _alJazeeraNews.postValue(response.body())
                     } else Log.e(
                         "ViewModel",
-                        "onResponse: Call error with HTTP status code" + response.body()
+                        "onResponse: Call error with HTTP status code ${response.body()}"
                     )
                 }
 
                 override fun onFailure(call: Call<NewsRespose>, t: Throwable) {
                     Log.e(
                         "ViewModel",
-                        "onFailure" + t.localizedMessage
+                        "onFailure ${t.localizedMessage}"
                     )
                 }
             })
@@ -123,7 +129,7 @@ class NewsViewModel: ViewModel() {
                         )
                     } else Log.e(
                         "ViewModel",
-                        "onResponse: Call error with HTTP status code " + response.code()
+                        "onResponse: Call error with HTTP status code ${response.code()}"
                     )
                 }
 
@@ -136,29 +142,30 @@ class NewsViewModel: ViewModel() {
             })
     }
 
-fun searchNews(q: String) {
-    ApiClient.provideApiService().getSearchNews(q)
-        .enqueue(object : Callback<NewsRespose> {
-            override fun onResponse(
-                call: Call<NewsRespose>,
-                response: Response<NewsRespose>
-            ) {
-                if (response.isSuccessful) {
-                    Log.i(
+    fun searchNews(q: String) {
+        ApiClient.provideApiService().getSearchNews(q)
+            .enqueue(object : Callback<NewsRespose> {
+                override fun onResponse(
+                    call: Call<NewsRespose>,
+                    response: Response<NewsRespose>
+                ) {
+                    if (response.isSuccessful) {
+                        Log.i(
+                            "ViewModel",
+                            "onResponse ${response.body()}"
+                        )
+                    } else Log.e(
                         "ViewModel",
-                        "onResponse ${response.body()}"
+                        "onResponse: Call error with HTTP status code ${response.code()}"
                     )
-                } else Log.e(
-                    "ViewModel",
-                    "onResponse: Call error with HTTP status code" + response.code()
-                )
-            }
+                }
 
-            override fun onFailure(call: Call<NewsRespose>, t: Throwable) {
-                Log.e(
-                    "ViewModel",
-                    "onFailure: " + t.localizedMessage
-                )
-            }
-        })
+                override fun onFailure(call: Call<NewsRespose>, t: Throwable) {
+                    Log.e(
+                        "ViewModel",
+                        "onFailure: ${t.localizedMessage}"
+                    )
+                }
+            })
+    }
 }

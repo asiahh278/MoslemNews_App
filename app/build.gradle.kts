@@ -2,18 +2,19 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-parcelize") // implementeing the parcelable (send bundle of data)
+    id("kotlin-parcelize") // implementing the parcelable (send bundle of data)
     id("com.google.devtools.ksp") // ksp = kotlin simple processing (for JSON processing your data)
 
 }
 
 android {
+//    compileSdkPreview = "UpsideDownCake"
     namespace = "com.idn.muslimmediaapp"
     compileSdk = 34
 
     defaultConfig {
         applicationId = "com.idn.muslimmediaapp"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -45,9 +46,9 @@ android {
 
 dependencies {
 
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.20")
+//    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.20")
 
-    // add splashscreen depencies for API 21
+    // add splashscreen dependencies for API 21
     implementation("androidx.core:core-splashscreen:1.1.0-alpha02")
 
     // Picasso --> for image loader
@@ -63,7 +64,7 @@ dependencies {
 
     // # Retrofit
     // HTTP client - with OkHTTP
-    // to retrieive data via REST based webservice
+    // to retrieve data via REST based webservice
      implementation("com.squareup.retrofit2:retrofit:2.9.0")
      implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
 
@@ -74,4 +75,5 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
 }

@@ -12,11 +12,6 @@ import com.idn.muslimmediaapp.NewsViewModel
 import com.idn.muslimmediaapp.adapter.NewsAdapter
 import com.idn.muslimmediaapp.databinding.FragmentAlJazeeraBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AlJazeeraFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AlJazeeraFragment : Fragment() {
     private var _binding: FragmentAlJazeeraBinding? = null
     private val binding get() = _binding as FragmentAlJazeeraBinding

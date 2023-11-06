@@ -63,7 +63,7 @@ class SearchableActivity : AppCompatActivity() {
         // handle intent func
     }
 
-    fun handleIntent(intent: Intent) {
+    private fun handleIntent(intent: Intent) {
         if (Intent.ACTION_SEARCH == intent.action) {
             intent.getStringExtra(SearchManager.QUERY)
                 ?.also { query ->
@@ -73,6 +73,7 @@ class SearchableActivity : AppCompatActivity() {
                         loadingView.root.visibility = View.VISIBLE
                         tvNoNews.visibility = View.INVISIBLE
                         searchView.setQuery("", false)
+                        searchView.queryHint = query
                         searchView.clearFocus()
                     }
                     // checking the search result
@@ -82,7 +83,7 @@ class SearchableActivity : AppCompatActivity() {
         }
     }
 
-    fun doMySearch(q: String) {
+    private fun doMySearch(q: String) {
         searchViewModel.searchNews(q)
     }
 

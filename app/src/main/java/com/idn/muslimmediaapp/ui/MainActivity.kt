@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.widget.SearchView
+import androidx.appcompat.widget.SearchView
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.tabs.TabLayoutMediator
 import com.idn.muslimmediaapp.R
@@ -17,14 +17,12 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding as ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        setTheme(R.style.Base_Theme_MuslimMediaApp)
         super.onCreate(savedInstanceState)
         installSplashScreen()
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setSupportActionBar(binding.toolbar)
-
-//        super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setupViewPager()
     }
     private fun setupViewPager(){
         binding.vpNews.adapter = SectionPagerAdapter(this)
