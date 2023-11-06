@@ -23,7 +23,7 @@ class WarningFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentWarningBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -46,7 +46,7 @@ class WarningFragment : Fragment() {
                 adapter = mAdapter
                 layoutManager = LinearLayoutManager(view.context)
             }
-            binding.loadingView.root.visibility
+            binding.loadingView.root.visibility = View.GONE
         }
     }
 }

@@ -23,7 +23,7 @@ class CommonFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCommonBinding.inflate(layoutInflater)
         return binding.root
     }

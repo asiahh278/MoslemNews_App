@@ -7,6 +7,4 @@
         android:title="@string/option_search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom"/>
-
-
 </menu>

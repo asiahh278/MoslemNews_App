@@ -23,7 +23,7 @@ class AlJazeeraFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAlJazeeraBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -47,6 +47,11 @@ class AlJazeeraFragment : Fragment() {
                 layoutManager = LinearLayoutManager(view.context)
             }
             binding.loadingView.root.visibility = View.GONE
+        }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

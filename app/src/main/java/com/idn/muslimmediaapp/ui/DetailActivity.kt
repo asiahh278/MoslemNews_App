@@ -45,6 +45,7 @@ class DetailActivity : AppCompatActivity() {
             tvDetailAuthor.text = newsData?.author
             tvDetailPublishAt.text = publishedAt
             Picasso.get().load(newsData?.urlToImage).into(ivDetailImage)
+            setWebView(newsData)
 
         }
     }
