@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:maxLines="1"
-            android:textColor="@color/green"
+            android:textColor="@color/blue_indicator"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:maxLines="3"
-            android:textColor="@color/black"
+            android:textColor="@color/blue"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"

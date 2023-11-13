@@ -23,7 +23,7 @@ class AboutAlQuranFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAboutAlQuranBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -47,9 +47,10 @@ class AboutAlQuranFragment : Fragment() {
             binding.loadingView.root.visibility = View.GONE
         }
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 }
+
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        _binding = null
+//    }
+

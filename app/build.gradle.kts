@@ -55,6 +55,7 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.8")
 
     // # Moshi - JSON converter
+    // use java can
     //serialize --> changing the Kotlin Object to JSON object
     //deserialize --> changing the JSON object to Kotlin Object
     implementation("com.squareup.moshi:moshi:1.14.0")

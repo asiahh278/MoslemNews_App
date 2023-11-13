@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.idn.muslimmediaapp.model.network.ApiClient
-import com.idn.muslimmediaapp.model.network.NewsRespose
+import com.idn.muslimmediaapp.model.network.NewsResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,33 +15,34 @@ import retrofit2.Response
 // MutableLiveData = can be change, the key is var
 // LiveData = can't be change, the key is val
 class NewsViewModel: ViewModel() {
-    private var _commonMuslimNews = MutableLiveData<NewsRespose>()
-    val commonMuslimNews get() = _commonMuslimNews as LiveData<NewsRespose>
+    private var _commonMuslimNews = MutableLiveData<NewsResponse>()
+    val commonMuslimNews get() = _commonMuslimNews as LiveData<NewsResponse>
 
-    private var _aboutAlQuranNews = MutableLiveData<NewsRespose>()
-    val aboutAlquranNews get() = _aboutAlQuranNews as LiveData<NewsRespose>
+    private var _aboutAlQuranNews = MutableLiveData<NewsResponse>()
+    val aboutAlquranNews get() = _aboutAlQuranNews as LiveData<NewsResponse>
 
-    private var _alJazeeraNews = MutableLiveData<NewsRespose>()
-    val alJazeeraNews get() = _alJazeeraNews as LiveData<NewsRespose>
+    private var _alJazeeraNews = MutableLiveData<NewsResponse>()
+    val alJazeeraNews get() = _alJazeeraNews as LiveData<NewsResponse>
 
-    private var _warningForMuslimNews = MutableLiveData<NewsRespose>()
-    val warningForMuslim get() = _warningForMuslimNews as LiveData<NewsRespose>
+    private var _warningForMuslimNews = MutableLiveData<NewsResponse>()
+    val warningForMuslim get() = _warningForMuslimNews as LiveData<NewsResponse>
 
-    private var _searchNews = MutableLiveData<NewsRespose>()
-    val searchNews get() = _searchNews as LiveData<NewsRespose>
+    private var _searchNews = MutableLiveData<NewsResponse>()
+    val searchNews get() = _searchNews as LiveData<NewsResponse>
 
     fun commonMuslimNews() {
         ApiClient.provideApiService().getCommonMuslimNews()
-            .enqueue(object : Callback<NewsRespose> {
+            .enqueue(object : Callback<NewsResponse> {
                 override fun onResponse(
-                    call: Call<NewsRespose>,
-                    response: Response<NewsRespose>
+                    call: Call<NewsResponse>,
+                    response: Response<NewsResponse>
                 ) {
                     if (response.isSuccessful) {
                         Log.i(
                             "ViewModel",
                             "onResponse: Call success with HTTP status code ${response.body()}"
                         )
+                        // memberikan respon value setelah fragment dipanggil
                         _commonMuslimNews.postValue(response.body())
                     } else Log.e(
                         "ViewModel",
@@ -50,7 +51,7 @@ class NewsViewModel: ViewModel() {
                     )
                 }
 
-                override fun onFailure(call: Call<NewsRespose>, t: Throwable) {
+                override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
                     Log.e(
                         "ViewModel",
                         "onFailure" + t.localizedMessage
@@ -61,10 +62,10 @@ class NewsViewModel: ViewModel() {
 
     fun aboutAlQuranNews() {
         ApiClient.provideApiService().getAlQuranNews()
-            .enqueue(object : Callback<NewsRespose> {
+            .enqueue(object : Callback<NewsResponse> {
                 override fun onResponse(
-                    call: Call<NewsRespose>,
-                    response: Response<NewsRespose>
+                    call: Call<NewsResponse>,
+                    response: Response<NewsResponse>
                 ) {
                     if (response.isSuccessful) {
                         Log.i(
@@ -78,7 +79,7 @@ class NewsViewModel: ViewModel() {
                     )
                 }
 
-                override fun onFailure(call: Call<NewsRespose>, t: Throwable) {
+                override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
                     Log.e(
                         "ViewModel",
                         "onFailure:  ${t.localizedMessage}"
@@ -89,10 +90,10 @@ class NewsViewModel: ViewModel() {
 
     fun alJazeeraNews() {
         ApiClient.provideApiService().getAlJazeeraNews()
-            .enqueue(object : Callback<NewsRespose> {
+            .enqueue(object : Callback<NewsResponse> {
                 override fun onResponse(
-                    call: Call<NewsRespose>,
-                    response: Response<NewsRespose>
+                    call: Call<NewsResponse>,
+                    response: Response<NewsResponse>
                 ) {
                     if (response.isSuccessful) {
                         Log.i(
@@ -106,7 +107,7 @@ class NewsViewModel: ViewModel() {
                     )
                 }
 
-                override fun onFailure(call: Call<NewsRespose>, t: Throwable) {
+                override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
                     Log.e(
                         "ViewModel",
                         "onFailure ${t.localizedMessage}"
@@ -117,23 +118,24 @@ class NewsViewModel: ViewModel() {
 
     fun warningForMuslimNews() {
         ApiClient.provideApiService().getWarningForMuslimNews()
-            .enqueue(object : Callback<NewsRespose> {
+            .enqueue(object : Callback<NewsResponse> {
                 override fun onResponse(
-                    call: Call<NewsRespose>,
-                    response: Response<NewsRespose>
+                    call: Call<NewsResponse>,
+                    response: Response<NewsResponse>
                 ) {
                     if (response.isSuccessful) {
                         Log.i(
                             "ViewModel",
                             "onResponse: ${response.body()}"
                         )
+                        _warningForMuslimNews.postValue(response.body())
                     } else Log.e(
                         "ViewModel",
                         "onResponse: Call error with HTTP status code ${response.code()}"
                     )
                 }
 
-                override fun onFailure(call: Call<NewsRespose>, t: Throwable) {
+                override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
                     Log.e(
                         "ViewModel",
                         "onFailure: " + t.localizedMessage
@@ -144,23 +146,24 @@ class NewsViewModel: ViewModel() {
 
     fun searchNews(q: String) {
         ApiClient.provideApiService().getSearchNews(q)
-            .enqueue(object : Callback<NewsRespose> {
+            .enqueue(object : Callback<NewsResponse> {
                 override fun onResponse(
-                    call: Call<NewsRespose>,
-                    response: Response<NewsRespose>
+                    call: Call<NewsResponse>,
+                    response: Response<NewsResponse>
                 ) {
                     if (response.isSuccessful) {
                         Log.i(
                             "ViewModel",
                             "onResponse ${response.body()}"
                         )
+                        _searchNews.postValue(response.body())
                     } else Log.e(
                         "ViewModel",
                         "onResponse: Call error with HTTP status code ${response.code()}"
                     )
                 }
 
-                override fun onFailure(call: Call<NewsRespose>, t: Throwable) {
+                override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
                     Log.e(
                         "ViewModel",
                         "onFailure: ${t.localizedMessage}"

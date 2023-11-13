@@ -38,7 +38,7 @@
             android:layout_marginTop="8dp"
             android:maxLines="3"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/blue"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/cv_image"/>
 

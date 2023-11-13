@@ -80,7 +80,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
                 .load(news.urlToImage)
                 .resize(2048, 1600)
                 .onlyScaleDown()
-                .placeholder(R.drawable.ic_logo)
+                .placeholder(R.drawable.logo_moslemnews)
                 .into(ivNews)
         }
         holder.itemView.setOnClickListener{

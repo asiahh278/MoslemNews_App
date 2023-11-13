@@ -12,28 +12,29 @@ interface ApiService {
     @Query("language") language: String = "en",
     @Query("pageSize") pageSize: Int = 50,
     @Query("sortBy") sortBy: String = "popularity"
-    ): Call<NewsRespose>
+    ): Call<NewsResponse>
 
     @GET("/v2/everything")
     fun getAlQuranNews(
         @Query("q") q: String = "Al-Quran",
-        @Query("language") language: String = "end"
-    ): Call<NewsRespose>
+        @Query("language") language: String = "en"
+    ): Call<NewsResponse>
 
     @GET("/v2/top-headlines")
     fun getAlJazeeraNews(
-        @Query("sources") source: String = "al=jazeera-english"
-    ): Call<NewsRespose>
+        @Query("source") source: String = "al-jazeera-english",
+        @Query("language") language: String = "en"
+    ): Call<NewsResponse>
 
     @GET("/v2/everything")
     fun getWarningForMuslimNews(
         @Query("q") q: String = "anti islam",
         @Query("language") language: String = "en"
-    ): Call<NewsRespose>
+    ): Call<NewsResponse>
 
     @GET("/v2/everything")
     fun getSearchNews(
         @Query("q") q: String,
         @Query("pageSize") pageSize: Int = 19
-    ): Call<NewsRespose>
+    ): Call<NewsResponse>
 }

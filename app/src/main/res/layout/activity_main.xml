@@ -18,10 +18,11 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
+            android:background="@color/bg_toolbar"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:logo="@drawable/logo_text"
+            app:logo="@drawable/toolbar_logo_moslemnews"
             app:popupTheme="@android:style/ThemeOverlay.Material.Light"
+            android:theme="@style/ThemeOverlay.SearchView"
             app:titleTextColor="@android:color/transparent"/>
 
         <com.google.android.material.tabs.TabLayout
@@ -29,12 +30,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="0dp"
-            android:backgroundTint="@color/white"
-            app:tabIndicatorColor="@color/green"
-            app:tabSelectedTextColor="@color/black"/>
+            android:backgroundTint="@color/bg_toolbar"
+            app:tabIndicatorColor="@color/blue_indicator"
+            app:tabSelectedTextColor="@color/blue"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
+<!--    for swipe to move another tab-->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_news"
         android:layout_width="match_parent"
